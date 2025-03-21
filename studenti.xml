@@ -12,4 +12,8 @@
         <Nume>Ion</Nume>
         <Grupa>227</Grupa>
     </student>
+    <student ID="12345">
+        <Nume>John Doe</Nume>
+        <Grupa>120</Grupa>
+    </student>
 </Entitati>
