@@ -3,12 +3,11 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@Tag("ExamplePack")
 class AppTest {
 
     @Test
     void exampleTestCase() {
         System.out.println("Running an example test...");
-        assertTrue(true, () -> "Example assertion passed");
+        assert true;
     }
 }
