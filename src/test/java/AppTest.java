@@ -1,8 +1,11 @@
 import domain.Student;
+import domain.Tema;
 import org.junit.jupiter.api.Test;
 import repository.StudentXMLRepository;
+import repository.TemaXMLRepository;
 import service.Service;
 import validation.StudentValidator;
+import validation.TemaValidator;
 import validation.Validator;
 
 import java.io.File;
@@ -73,4 +76,33 @@ class AppTest {
         int result = service.saveStudent(studentId, name, negativeGroup);
         assertEquals(1, result, "Student with negative group number should not be saved");
     }
+    @Test
+    void addValidAssignmentTest() {
+        Validator<Tema> temaValidator = new TemaValidator();
+        TemaXMLRepository temaRepository = new TemaXMLRepository(temaValidator, "teme.xml");
+        Service service = new Service(null, temaRepository, null);
+
+        String id = "49";
+        String description = "new test";
+        int deadline = 9;
+        int startline = 7;
+
+        int result = service.saveTema(id, description, deadline, startline);
+        assertEquals(0, result, "Assignment added successfully");
+    }
+    @Test
+    void addAssignmentWithInvalidStartlineTest() {
+        Validator<Tema> temaValidator = new TemaValidator();
+        TemaXMLRepository temaRepository = new TemaXMLRepository(temaValidator, "teme.xml");
+        Service service = new Service(null, temaRepository, null);
+
+        String id = "11";
+        String description = "Invalid test case";
+        int deadline = 8;
+        int invalidStartline = 10;
+
+        int result = service.saveTema(id, description, deadline, invalidStartline);
+        assertEquals(1, result, "Assignment with invalid startline not saved");
+    }
+
 }
